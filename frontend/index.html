@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CloudSpendGuard - Advanced Enterprise AWS FinOps, Real-time Graph Analytics & Automated Waste Elimination Platform.">
+  <title>CloudSpendGuard | Advanced AWS FinOps & Next-Gen Analytics</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+/* ==========================================================================
+   CloudSpendGuard — Advanced High-Graphics FinOps Theme (Fully Self-Contained)
+   ========================================================================== */
+
+:root {
+  --bg-dark: #070b19;
+  --bg-dark-alt: #0e1628;
+  --bg-card: #151e36;
+  --bg-card-hover: #1a2544;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-glow: rgba(37, 99, 235, 0.45);
+  --cyan-accent: #00f2fe;
+  --cyan-glow: rgba(0, 242, 254, 0.3);
+  --emerald: #10b981;
+  --amber: #f59e0b;
+  --rose: #f43f5e;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-sans); background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+
+.container { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 1.5rem; }
+.text-center { text-align: center; }
+.text-cyan { color: var(--cyan-accent) !important; }
+.text-emerald { color: var(--emerald) !important; }
+.text-amber { color: var(--amber) !important; }
+
+/* Announcement Bar */
+.top-banner { background: linear-gradient(90deg, #1e1b4b, #2563eb, #1e1b4b); border-bottom: 1px solid var(--border-color); color: #fff; padding: 0.6rem 0; font-size: 0.85rem; }
+.banner-content { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; text-align: center; }
+.badge { background: var(--cyan-accent); color: #070b19; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; }
+.banner-link { color: #fff; display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 600; text-decoration: underline; }
+
+/* Navigation */
+.main-header { position: sticky; top: 0; z-index: 1000; background: rgba(7, 11, 25, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color); padding: 1.1rem 0; }
+.header-container { display: flex; align-items: center; justify-content: space-between; }
+.brand-logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 1.4rem; color: #fff; text-decoration: none; }
+.logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--cyan-accent)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: 0 0 20px var(--cyan-glow); }
+.logo-accent { color: var(--cyan-accent); }
+
+.nav-list { display: flex; list-style: none; gap: 2.2rem; }
+.nav-link { color: var(--text-muted); font-weight: 500; font-size: 0.95rem; text-decoration: none; transition: var(--transition); }
+.nav-link:hover, .nav-link.active { color: var(--cyan-accent); text-shadow: 0 0 10px var(--cyan-glow); }
+
+.header-actions { display: flex; align-items: center; gap: 1rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font-weight: 600; font-size: 0.95rem; padding: 0.75rem 1.6rem; border-radius: 8px; border: 1px solid transparent; cursor: pointer; transition: var(--transition); text-decoration: none; }
+.btn-primary { background: linear-gradient(135deg, var(--primary), #3b82f6); color: #fff; box-shadow: 0 0 25px var(--primary-glow); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 35px var(--primary-glow); }
+.btn-secondary { background: rgba(255,255,255,0.05); color: #fff; border-color: var(--border-color); }
+.btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--cyan-accent); }
+
+/* Hero Section with Live Animated Canvas & Analytics Mockup */
+.hero-section { position: relative; padding: 7rem 0 8rem 0; overflow: hidden; background: radial-gradient(circle at 50% 20%, #172554 0%, var(--bg-dark) 70%); }
+.hero-glow-bg { position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 900px; height: 500px; background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, rgba(0,242,254,0.1) 40%, transparent 70%); filter: blur(90px); pointer-events: none; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: center; position: relative; z-index: 2; }
+
+.hero-pill { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(0,242,254,0.08); border: 1px solid rgba(0,242,254,0.25); padding: 0.4rem 1.1rem; border-radius: 50px; font-size: 0.85rem; color: var(--cyan-accent); margin-bottom: 1.75rem; box-shadow: 0 0 20px rgba(0,242,254,0.15); }
+.pill-pulse { width: 8px; height: 8px; background-color: var(--cyan-accent); border-radius: 50%; box-shadow: 0 0 12px var(--cyan-accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0% { transform: scale(0.95); opacity: 0.8; } 50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 18px var(--cyan-accent); } 100% { transform: scale(0.95); opacity: 0.8; } }
+
+.hero-title { font-size: 3.6rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1.5rem; }
+.gradient-title { background: linear-gradient(135deg, #fff 20%, var(--cyan-accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-desc { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; }
+.hero-actions { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+
+.hero-metrics-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 2rem; }
+.hm-item h4 { font-size: 1.8rem; font-family: var(--font-mono); color: var(--cyan-accent); margin-bottom: 0.2rem; }
+.hm-item p { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Hero Graphic Glass Showcase with Real Mini Charts */
+.hero-showcase-card { background: rgba(21, 30, 54, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(0, 242, 254, 0.2); border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(0, 242, 254, 0.1); overflow: hidden; }
+.sc-header { background: rgba(7, 11, 25, 0.8); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
+.sc-dots { display: flex; gap: 8px; }
+.sc-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.dot-r { background: #ef4444; } .dot-y { background: #f59e0b; } .dot-g { background: #10b981; }
+.sc-title { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); }
+.sc-live { font-size: 0.75rem; color: var(--emerald); display: flex; align-items: center; gap: 0.4rem; font-weight: 600; }
+.sc-body { padding: 1.75rem; }
+
+.sc-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; }
+.sc-metric-box { background: rgba(7, 11, 25, 0.6); border: 1px solid var(--border-color); padding: 1.25rem; border-radius: 12px; }
+.sc-metric-box span { font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.3rem; }
+.sc-metric-box h3 { font-size: 1.6rem; font-family: var(--font-mono); font-weight: 700; }
+
+.sim-box-advanced { background: rgba(7, 11, 25, 0.9); border: 1px solid rgba(0,242,254,0.25); padding: 1.5rem; border-radius: 14px; box-shadow: inset 0 0 20px rgba(0,242,254,0.05); }
+.sim-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.9rem; }
+.sim-top strong { font-family: var(--font-mono); color: var(--cyan-accent); font-size: 1.1rem; }
+.range-slider-adv { width: 100%; height: 8px; background: #1e293b; border-radius: 4px; appearance: none; outline: none; margin-bottom: 1.2rem; cursor: pointer; }
+.range-slider-adv::-webkit-slider-thumb { appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--cyan-accent); box-shadow: 0 0 15px var(--cyan-accent); cursor: pointer; }
+.sim-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; border-top: 1px solid var(--border-color); padding-top: 0.8rem; }
+.sim-savings-val { font-family: var(--font-mono); font-size: 1.25rem; font-weight: 700; color: var(--emerald); }
+
+/* Section Styles */
+.section-padding { padding: 7rem 0; position: relative; }
+.section-alt { background-color: var(--bg-dark-alt); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+.sec-header { max-width: 750px; margin: 0 auto 4.5rem auto; text-align: center; }
+.sec-sub { display: inline-block; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--cyan-accent); margin-bottom: 0.75rem; }
+.sec-title { font-size: 2.75rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+.sec-desc { color: var(--text-muted); font-size: 1.1rem; }
+
+/* Advanced Features Grid (High Graphics & Cards) */
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.feature-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem; transition: var(--transition); position: relative; overflow: hidden; }
+.feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--cyan-accent)); opacity: 0; transition: var(--transition); }
+.feature-card:hover { transform: translateY(-6px); border-color: rgba(0,242,254,0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(0,242,254,0.1); background: var(--bg-card-hover); }
+.feature-card:hover::before { opacity: 1; }
+.fc-icon { width: 56px; height: 56px; background: rgba(0,242,254,0.1); border: 1px solid rgba(0,242,254,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--cyan-accent); margin-bottom: 1.5rem; font-size: 1.5rem; }
+.feature-card h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.85rem; color: #fff; }
+.feature-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+/* Dashboard Analytics Section (Full Graph Suite) */
+.dashboard-suite { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); overflow: hidden; }
+.ds-topbar { background: var(--bg-dark-alt); padding: 1.25rem 2rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.ds-title { display: flex; align-items: center; gap: 0.8rem; font-weight: 700; font-size: 1.1rem; }
+.ds-filters { display: flex; gap: 0.5rem; }
+.ds-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 0.4rem 1rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; transition: var(--transition); }
+.ds-btn.active, .ds-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+
+.ds-grid { padding: 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.ds-card { background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.5rem; }
+.ds-card.span-2 { grid-column: span 2; }
+.ds-card.span-4 { grid-column: span 4; }
+.dsc-label { font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem; }
+.dsc-value { font-size: 2.2rem; font-weight: 800; font-family: var(--font-mono); margin-bottom: 0.3rem; }
+.dsc-sub { font-size: 0.8rem; color: var(--text-muted); }
+
+.graph-box { position: relative; height: 320px; width: 100%; }
+.graph-box-sm { position: relative; height: 260px; width: 100%; }
+
+/* Pricing / Cost Guarantee Section */
+.pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; max-width: 900px; margin: 0 auto; }
+.pricing-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 3rem; position: relative; display: flex; flex-direction: column; justify-content: space-between; transition: var(--transition); }
+.pricing-card.featured { border-color: var(--cyan-accent); background: linear-gradient(135deg, var(--bg-card), #172554); box-shadow: 0 0 40px rgba(0,242,254,0.15); }
+.pricing-badge { position: absolute; top: -15px; right: 30px; background: linear-gradient(135deg, var(--primary), var(--cyan-accent)); color: #070b19; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 50px; }
+.pricing-card h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+.pricing-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
+.price-tag { font-size: 3rem; font-weight: 800; font-family: var(--font-mono); color: var(--cyan-accent); margin-bottom: 2rem; display: flex; align-items: baseline; gap: 0.5rem; }
+.price-tag span { font-size: 1rem; color: var(--text-muted); font-weight: 400; font-family: var(--font-sans); }
+.pricing-features { list-style: none; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.pricing-features li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
+.pricing-features li i { color: var(--emerald); }
+
+/* Contact Form Section */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3.5rem; align-items: center; }
+.contact-info-list { display: flex; flex-direction: column; gap: 2rem; margin-top: 2.5rem; }
+.ci-item { display: flex; gap: 1.25rem; align-items: flex-start; }
+.ci-icon { width: 50px; height: 50px; background: rgba(0,242,254,0.1); border: 1px solid rgba(0,242,254,0.25); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--cyan-accent); font-size: 1.25rem; flex-shrink: 0; }
+.ci-item h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+.ci-item p { color: var(--text-muted); font-size: 0.95rem; }
+
+.contact-card-adv { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 3rem; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+.form-group { margin-bottom: 1.5rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.form-group label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; color: #fff; }
+.form-input { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 8px; padding: 0.9rem 1.1rem; color: #fff; font-family: var(--font-sans); font-size: 0.95rem; transition: var(--transition); }
+.form-input:focus { outline: none; border-color: var(--cyan-accent); box-shadow: 0 0 15px rgba(0,242,254,0.2); }
+.form-feedback { margin-top: 1.25rem; padding: 1rem; border-radius: 8px; font-size: 0.9rem; display: none; }
+.form-feedback.success { display: block; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--emerald); color: #34d399; }
+.form-feedback.error { display: block; background: rgba(244, 63, 94, 0.15); border: 1px solid var(--rose); color: #fb7185; }
+
+/* Footer */
+.main-footer { background: #040711; border-top: 1px solid var(--border-color); padding: 5rem 0 2rem 0; color: var(--text-muted); }
+.footer-grid { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 3rem; margin-bottom: 4rem; }
+.footer-desc { margin-top: 1.25rem; font-size: 0.95rem; line-height: 1.6; max-width: 320px; }
+.footer-col h4 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+.footer-links a { color: var(--text-muted); text-decoration: none; transition: var(--transition); font-size: 0.95rem; }
+.footer-links a:hover { color: var(--cyan-accent); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 2rem; font-size: 0.85rem; text-align: center; }
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .hero-grid, .contact-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .ds-grid { grid-template-columns: repeat(2, 1fr); }
+  .ds-card.span-4 { grid-column: span 2; }
+}
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.75rem; }
+  .features-grid, .ds-grid, .footer-grid, .form-row { grid-template-columns: 1fr; }
+  .ds-card.span-2, .ds-card.span-4 { grid-column: span 1; }
+  .nav-menu { display: none; position: fixed; top: 75px; left: 0; width: 100%; background: var(--bg-dark); padding: 2rem; border-bottom: 1px solid var(--border-color); }
+  .nav-menu.is-active { display: block; }
+  .nav-list { flex-direction: column; gap: 1.5rem; }
+  .mobile-toggle { display: block; background: none; border: none; color: #fff; cursor: pointer; font-size: 1.5rem; }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement -->
+  <aside class="top-banner">
+    <div class="container banner-content">
+      <span class="badge">Performance Guarantee</span>
+      <p>We reduce your verified AWS cloud infrastructure spending by 15% to 30%, or our optimization audit is completely free.</p>
+      <a href="#pricing" class="banner-link">View Pricing Model <i data-lucide="arrow-right"></i></a>
+    </div>
+  </aside>
+
+  <!-- Navigation Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-icon"><i data-lucide="shield-check"></i></div>
+        <span>CloudSpend<span class="logo-accent">Guard</span></span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#dashboard" class="nav-link">Live Analytics</a></li>
+          <li><a href="#solutions" class="nav-link">Solutions</a></li>
+          <li><a href="#pricing" class="nav-link">FinOps Pricing</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#contact" class="btn btn-primary">Request Audit</a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu"><i data-lucide="menu"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="hero-glow-bg"></div>
+      <div class="container hero-grid">
+        
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span class="pill-pulse"></span>
+            <span>Next-Gen FinOps &amp; Cloud Intelligence Engine</span>
+          </div>
+          <h1 class="hero-title">
+            Cut AWS Costs by <span class="gradient-title">15% – 30%</span> Guaranteed.
+          </h1>
+          <p class="hero-desc">
+            Advanced real-time analytics, automated waste elimination, and deep infrastructure governance designed for modern high-growth engineering teams. Pay strictly based on verified savings.
+          </p>
+          
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary btn-lg">
+              Claim Your Cost Audit
+              <i data-lucide="sparkles"></i>
+            </a>
+            <a href="#dashboard" class="btn btn-secondary btn-lg">
+              Explore Live Graphs
+              <i data-lucide="bar-chart-3"></i>
+            </a>
+          </div>
+
+          <div class="hero-metrics-bar">
+            <div class="hm-item">
+              <h4>$48.2M+</h4>
+              <p>Optimized Cloud Spend</p>
+            </div>
+            <div class="hm-item">
+              <h4>24.8%</h4>
+              <p>Average Waste Reduction</p>
+            </div>
+            <div class="hm-item">
+              <h4>100%</h4>
+              <p>Read-Only IAM Secure</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Hero Graphical Preview -->
+        <div class="hero-showcase">
+          <div class="hero-showcase-card">
+            <div class="sc-header">
+              <div class="sc-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+              <span class="sc-title">cloud-spend-intelligence v3.4</span>
+              <div class="sc-live"><span class="pill-pulse"></span> Live Telemetry</div>
+            </div>
+            
+            <div class="sc-body">
+              <div class="sc-metrics-grid">
+                <div class="sc-metric-box">
+                  <span>Current AWS Run Rate</span>
+                  <h3 id="hero-run-rate">$42,500 /mo</h3>
+                </div>
+                <div class="sc-metric-box">
+                  <span>Guaranteed Savings (22.5%)</span>
+                  <h3 class="text-emerald" id="hero-saved-rate">$9,562 /mo</h3>
+                </div>
+              </div>
+
+              <div class="sim-box-advanced">
+                <div class="sim-top">
+                  <span>Adjust Monthly AWS Cloud Spend:</span>
+                  <strong id="sim-spend-label">$50,000 / mo</strong>
+                </div>
+                <input type="range" id="hero-spend-slider" min="10000" max="250000" step="5000" value="50000" class="range-slider-adv">
+                <div class="sim-bottom">
+                  <span>Estimated Annual Savings (22.5% avg):</span>
+                  <span class="sim-savings-val" id="sim-annual-val">$135,000 / yr</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LIVE ANALYTICS DASHBOARD SUITE (DENSE GRAPHS) -->
+    <section class="section-padding" id="dashboard">
+      <div class="container">
+        <div class="sec-header">
+          <span class="sec-sub">Real-Time Intelligence</span>
+          <h2 class="sec-title">Advanced FinOps Dashboard Suite</h2>
+          <p class="sec-desc">Comprehensive telemetry across AWS EC2, RDS, S3, and EKS containers with automated anomaly detection and rightsizing simulations.</p>
+        </div>
+
+        <div class="dashboard-suite">
+          <div class="ds-topbar">
+            <div class="ds-title">
+              <i data-lucide="activity" class="text-cyan"></i>
+              <span>AWS Enterprise Infrastructure Telemetry &amp; Cost Optimization Suite</span>
+            </div>
+            <div class="ds-filters">
+              <button class="ds-btn active" id="filter-all">All Regions</button>
+              <button class="ds-btn" id="filter-us">us-east-1 (Prod)</button>
+              <button class="ds-btn" id="filter-eu">eu-west-1 (Staging)</button>
+            </div>
+          </div>
+
+          <div class="ds-grid">
+            <div class="ds-card">
+              <span class="dsc-label">Total Monthly Telemetry</span>
+              <div class="dsc-value" id="dash-spend">$42,500</div>
+              <span class="dsc-sub text-emerald"><i data-lucide="trending-down"></i> -18.4% post-optimization</span>
+            </div>
+            <div class="ds-card">
+              <span class="dsc-label">Verified Savings Fee</span>
+              <div class="dsc-value text-cyan" id="dash-fee">15% – 30%</div>
+              <span class="dsc-sub">Only paid on actual reductions</span>
+            </div>
+            <div class="ds-card">
+              <span class="dsc-label">Idle Resources Isolated</span>
+              <div class="dsc-value text-amber">34</div>
+              <span class="dsc-sub">Ready for 1-click termination</span>
+            </div>
+            <div class="ds-card">
+              <span class="dsc-label">Security &amp; Compliance</span>
+              <div class="dsc-value text-emerald">100%</div>
+              <span class="dsc-sub">SOC2 Type II &amp; ISO Aligned</span>
+            </div>
+
+            <!-- Main Cost Trend Chart -->
+            <div class="ds-card span-2">
+              <div class="sec-sub" style="margin-bottom:0.5rem;">6-Month Spending Trajectory vs. Optimized Target</div>
+              <div class="graph-box">
+                <canvas id="mainTrendChart"></canvas>
+              </div>
+            </div>
+
+            <!-- AWS Service Breakdown Doughnut -->
+            <div class="ds-card span-2">
+              <div class="sec-sub" style="margin-bottom:0.5rem;">Expenditure Breakdown by AWS Service</div>
+              <div class="graph-box">
+                <canvas id="servicePieChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Real-time CPU Utilization vs Waste Graph -->
+            <div class="ds-card span-4">
+              <div class="sec-sub" style="margin-bottom:0.5rem;">EC2 &amp; RDS Instance Fleet CPU Utilization &amp; Waste Analysis</div>
+              <div class="graph-box-sm">
+                <canvas id="fleetBarChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SOLUTIONS & CAPABILITIES -->
+    <section class="section-padding section-alt" id="solutions">
+      <div class="container">
+        <div class="sec-header">
+          <span class="sec-sub">Enterprise Capabilities</span>
+          <h2 class="sec-title">Engineered for Maximum Cloud Efficiency</h2>
+          <p class="sec-desc">Our platform continuously scans your AWS account configurations to deliver actionable, risk-free cost reduction intelligence.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="fc-icon"><i data-lucide="Cpu"></i></div>
+            <h3>Intelligent EC2 Rightsizing</h3>
+            <p>Analyzes 14-day CloudWatch historical CPU, memory, and network throughput to recommend optimal instance families and Graviton migrations.</p>
+          </div>
+          <div class="feature-card">
+            <div class="fc-icon"><i data-lucide="HardDrive"></i></div>
+            <h3>EBS &amp; Snapshot Purger</h3>
+            <p>Automatically isolates unattached block store volumes, stale AMI snapshots, and orphaned Elastic IPs that accumulate silent charges.</p>
+          </div>
+          <div class="feature-card">
+            <div class="fc-icon"><i data-lucide="Database"></i></div>
+            <h3>RDS &amp; Aurora Optimization</h3>
+            <p>Identifies over-provisioned database instance classes and unoptimized IOPS storage allocations across multi-AZ clusters.</p>
+          </div>
+          <div class="feature-card">
+            <div class="fc-icon"><i data-lucide="Layers"></i></div>
+            <h3>S3 Lifecycle Automation</h3>
+            <p>Monitors bucket access patterns to transition infrequently accessed objects to Glacier Instant Retrieval or Deep Archive tiers.</p>
+          </div>
+          <div class="feature-card">
+            <div class="fc-icon"><i data-lucide="ShieldAlert"></i></div>
+            <h3>Budget Anomaly Alerts</h3>
+            <p>Provides instantaneous Slack, PagerDuty, or Webhook alerts the moment unusual spending spikes occur in any AWS account.</p>
+          </div>
+          <div class="feature-card">
+            <div class="fc-icon"><i data-lucide="TrendingUp"></i></div>
+            <h3>Savings Plans &amp; RIs</h3>
+            <p>Computes optimal commitment coverage strategies, ensuring maximum discount rates without locking capital into inflexible contracts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING & PERFORMANCE GUARANTEE MODEL -->
+    <section class="section-padding" id="pricing">
+      <div class="container">
+        <div class="sec-header">
+          <span class="sec-sub">Performance-Based Model</span>
+          <h2 class="sec-title">We Earn When You Save</h2>
+          <p class="sec-desc">Transparent pricing designed to align our incentives directly with your bottom line. We reduce your cloud bills by 15% to 30%, and charge according to verified results.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div>
+              <h3>Complimentary Audit</h3>
+              <p>Initial deep-scan of your AWS infrastructure to calculate total remediable waste.</p>
+              <div class="price-tag">$0 <span>/ initial assessment</span></div>
+              <ul class="pricing-features">
+                <li><i data-lucide="check"></i> 100% Read-Only IAM Access</li>
+                <li><i data-lucide="check"></i> Complete Waste Inventory Report</li>
+                <li><i data-lucide="check"></i> Estimated 15%–30% Cost Reduction</li>
+                <li><i data-lucide="check"></i> Zero Production Risk</li>
+              </ul>
+            </div>
+            <a href="#contact" class="btn btn-secondary btn-block">Request Free Audit</a>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Performance Shared</div>
+            <div>
+              <h3>Managed FinOps Platform</h3>
+              <p>Full continuous optimization engine, automated alerts, and dedicated cloud architects.</p>
+              <div class="price-tag">15% – 30% <span>of verified savings</span></div>
+              <ul class="pricing-features">
+                <li><i data-lucide="check"></i> Continuous Automated Waste Scanning</li>
+                <li><i data-lucide="check"></i> 15% to 30% Verified Bill Reduction</li>
+                <li><i data-lucide="check"></i> Dedicated AWS Cost Architect Support</li>
+                <li><i data-lucide="check"></i> Pay Only for Results (No Savings, No Fee)</li>
+              </ul>
+            </div>
+            <a href="#contact" class="btn btn-primary btn-block">Get Started Today</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT & AUDIT REQUEST -->
+    <section class="section-padding section-alt" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          
+          <div class="contact-info">
+            <span class="sec-sub">Secure Onboarding</span>
+            <h2 class="sec-title" style="font-size:2.4rem;">Schedule Your Cloud Cost Audit</h2>
+            <p class="sec-desc">Connect with our FinOps specialists to discover how much unnecessary infrastructure spend your team can eliminate this month.</p>
+
+            <div class="contact-info-list">
+              <div class="ci-item">
+                <div class="ci-icon"><i data-lucide="mail"></i></div>
+                <div>
+                  <h4>Direct Engineering Contact</h4>
+                  <p>audit@cloudspendguard.com</p>
+                </div>
+              </div>
+              <div class="ci-item">
+                <div class="ci-icon"><i data-lucide="shield-check"></i></div>
+                <div>
+                  <h4>Security Assurance</h4>
+                  <p>Non-destructive read-only policy. Your live AWS resources remain fully protected.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-card-adv">
+            <form id="auditForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName">Full Name *</label>
+                  <input type="text" id="fullName" class="form-input" placeholder="Jane Doe" required>
+                </div>
+                <div class="form-group">
+                  <label for="businessEmail">Work Email *</label>
+                  <input type="email" id="businessEmail" class="form-input" placeholder="jane@company.com" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="companyName">Company Name</label>
+                  <input type="text" id="companyName" class="form-input" placeholder="Acme Cloud Corp">
+                </div>
+                <div class="form-group">
+                  <label for="monthlySpend">Monthly AWS Spend</label>
+                  <select id="monthlySpend" class="form-input" required>
+                    <option value="">Select Spend Tier...</option>
+                    <option value="$10k - $25k">$10,000 - $25,000 / mo</option>
+                    <option value="$25k - $75k">$25,000 - $75,000 / mo</option>
+                    <option value="$75k - $200k">$75,000 - $200,000 / mo</option>
+                    <option value="$200k+">$200,000+ / mo</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Infrastructure Notes or Primary Goals</label>
+                <textarea id="message" rows="3" class="form-input" placeholder="Tell us about your main cost concerns (e.g. idle EC2 instances, high data transfer, RDS sizing)..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                <span>Request Verified Cost Audit</span>
+                <i data-lucide="send"></i>
+              </button>
+
+              <div id="formFeedback" class="form-feedback" aria-live="polite"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="#" class="brand-logo">
+            <div class="logo-icon"><i data-lucide="shield-check"></i></div>
+            <span>CloudSpend<span class="logo-accent">Guard</span></span>
+          </a>
+          <p class="footer-desc">Next-generation FinOps platform helping businesses eliminate AWS cloud waste and optimize infrastructure spending with performance-based pricing.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="#dashboard">Live Analytics</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#pricing">Pricing Model</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#contact">Cost Calculator</a></li>
+            <li><a href="#contact">IAM Security Guide</a></li>
+            <li><a href="#about">FinOps Best Practices</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal &amp; Security</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">SOC2 Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 CloudSpendGuard. All rights reserved. Amazon Web Services and AWS are trademarks of Amazon.com, Inc.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Embedded Advanced Graph & UI Script -->
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+
+  // Mobile menu toggle
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => navMenu.classList.toggle('is-active'));
+  }
+
+  // Hero Interactive Slider
+  const slider = document.getElementById('hero-spend-slider');
+  const spendLabel = document.getElementById('sim-spend-label');
+  const heroRunRate = document.getElementById('hero-run-rate');
+  const heroSavedRate = document.getElementById('hero-saved-rate');
+  const annualVal = document.getElementById('sim-annual-val');
+
+  if (slider) {
+    slider.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value, 10);
+      const savedMonthly = Math.round(val * 0.225);
+      const savedAnnual = savedMonthly * 12;
+
+      spendLabel.textContent = `$${val.toLocaleString()} / mo`;
+      heroRunRate.textContent = `$${val.toLocaleString()} /mo`;
+      heroSavedRate.textContent = `$${savedMonthly.toLocaleString()} /mo`;
+      annualVal.textContent = `$${savedAnnual.toLocaleString()} / yr`;
+    });
+  }
+
+  // Initialize Chart.js Advanced Graphs
+  initAdvancedCharts();
+  setupFormSubmission();
+});
+
+function initAdvancedCharts() {
+  const mainTrendEl = document.getElementById('mainTrendChart');
+  const servicePieEl = document.getElementById('servicePieChart');
+  const fleetBarEl = document.getElementById('fleetBarChart');
+
+  if (mainTrendEl && typeof Chart !== 'undefined') {
+    new Chart(mainTrendEl, {
+      type: 'line',
+      data: {
+        labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        datasets: [
+          {
+            label: 'Actual Spend ($)',
+            data: [58000, 54200, 56000, 51000, 47500, 42500],
+            borderColor: '#2563eb',
+            backgroundColor: 'rgba(37,99,235,0.1)',
+            fill: true,
+            tension: 0.35,
+            borderWidth: 3
+          },
+          {
+            label: 'Optimized Target ($)',
+            data: [42000, 41000, 39500, 37000, 34000, 32000],
+            borderColor: '#00f2fe',
+            borderDash: [6, 6],
+            fill: false,
+            tension: 0.35,
+            borderWidth: 3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: '#94a3b8', font: { family: 'Inter', size: 11 } } }
+        },
+        scales: {
+          x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+          y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
+        }
+      }
+    });
+  }
+
+  if (servicePieEl && typeof Chart !== 'undefined') {
+    new Chart(servicePieEl, {
+      type: 'doughnut',
+      data: {
+        labels: ['Amazon EC2', 'Amazon RDS', 'Amazon S3', 'EKS Clusters', 'Data Transfer / NAT'],
+        datasets: [{
+          data: [44, 23, 16, 11, 6],
+          backgroundColor: ['#2563eb', '#00f2fe', '#f59e0b', '#10b981', '#64748b'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'right', labels: { color: '#94a3b8', font: { family: 'Inter', size: 10 } } }
+        }
+      }
+    });
+  }
+
+  if (fleetBarEl && typeof Chart !== 'undefined') {
+    new Chart(fleetBarEl, {
+      type: 'bar',
+      data: {
+        labels: ['Prod-App-01', 'Prod-DB-Replica', 'Staging-Cluster', 'Analytics-Worker', 'Dev-Test-Node', 'Cache-Redis-01'],
+        datasets: [{
+          label: 'Avg CPU Utilization (%)',
+          data: [12, 18, 4, 8, 2, 14],
+          backgroundColor: '#00f2fe',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: '#94a3b8', font: { family: 'Inter', size: 11 } } }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: '#94a3b8' } },
+          y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' }, max: 100 }
+        }
+      }
+    });
+  }
+}
+
+function setupFormSubmission() {
+  const form = document.getElementById('auditForm');
+  const feedback = document.getElementById('formFeedback');
+  const submitBtn = document.getElementById('submitBtn');
+
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    feedback.style.display = 'none';
+
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('businessEmail').value.trim();
+    const spend = document.getElementById('monthlySpend').value;
+
+    if (!name || !email || !spend) {
+      feedback.className = 'form-feedback error';
+      feedback.textContent = 'Please fill out all required fields.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Processing Audit Request...';
+
+    setTimeout(() => {
+      feedback.className = 'form-feedback success';
+      feedback.innerHTML = '<strong>Success!</strong> Your audit request has been registered. Our cloud cost engineers will contact you shortly.';
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>Request Verified Cost Audit</span> <i data-lucide="send"></i>';
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }, 1200);
+  });
+}
+  </script>
+</body>
+</html>
